@@ -16,16 +16,46 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         //TODO: 1- Getting the Documents directory’s URL
+        ///The shared file manager object.
         let manager = FileManager.default
         let documents = manager.urls(for: .documentDirectory, in: .userDomainMask)
         let docURL = documents.first!
         print(docURL)
         print(documents.count)
-        for doc in documents {
-            print(doc)
+        
+        //TODO: 2- Creating a file inside Documents
+        let newFileURL = docURL.appendingPathComponent("myText.txt")
+        let filePath = newFileURL.path
+        manager.createFile(atPath: filePath, contents: nil, attributes: nil)
+        
+        //TODO: 3- Creating a directory inside Documents
+        let newDirectoryURL = docURL.appendingPathComponent("myFiles")
+        let dirPath = newDirectoryURL.path
+        ///This method throws an error if it cannot complete the task, so we have to handle the error with the try keyword.
+        do {
+            try manager.createDirectory(atPath: dirPath, withIntermediateDirectories: false, attributes: nil)
+        } catch {
+            print("The directory already exists")
         }
+        
+        listItems(directory: docURL)
     }
 
+    //TODO: 4- Listing the content of a directory
+    func listItems(directory: URL) {
+        ///The shared file manager object.
+        let manager = FileManager.default
+        if let list = try? manager.contentsOfDirectory(atPath: directory.path) {
+            if list.isEmpty {
+                print("The directory is empty")
+            } else {
+                for item in list {
+                    print(item)
+                }
+            }
+        }
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
