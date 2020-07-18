@@ -51,6 +51,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         ///Preparing target dir URL for listing the content of a custom directory
         let customDirURL = docURL.appendingPathComponent("myFiles")
         listItems(directory: customDirURL)
+        
+        //TODO: 6- Moving Files
+        let originURL = docURL.appendingPathComponent("myText.txt")
+        let destinationURL = docURL.appendingPathComponent("myFiles/myText.txt")
+        let originPath = originURL.path
+        let destinationPath = destinationURL.path
+        do {
+            try manager.moveItem(atPath: originPath, toPath: destinationPath)
+        } catch {
+            print("File was not moved")
+        }
+        
+        ///Checking the content of a custom dir
+        print("-- Last checking --")
+        listItems(directory: docURL)
+        listItems(directory: customDirURL)
+
     }
 
     //TODO: 4- Listing the content of a directory
@@ -62,7 +79,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print("The directory is empty")
             } else {
                 for item in list {
-                    print(item)
+                    let counter = directory.pathComponents.count
+                    print("\(directory.pathComponents[counter-1]) \(item)")
                 }
             }
         }

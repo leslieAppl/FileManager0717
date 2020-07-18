@@ -9,3 +9,5 @@
 ## 4 Listing the content of a directory
 
 ## 5 Creating files in a custom directory
+
+## 6 Moving Files
