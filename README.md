@@ -17,3 +17,5 @@
 ## 8,9 Removing Files and Directories
 
 ## 10 Reading file's attributes
+
+## 11 Managing (write and read) the file's content | Data
