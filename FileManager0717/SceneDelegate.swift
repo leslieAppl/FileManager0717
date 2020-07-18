@@ -25,8 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //TODO: 2- Creating a file inside Documents
         let newFileURL = docURL.appendingPathComponent("myText.txt")
-        let filePath = newFileURL.path
-        manager.createFile(atPath: filePath, contents: nil, attributes: nil)
+        let filePath2 = newFileURL.path
+        manager.createFile(atPath: filePath2, contents: nil, attributes: nil)
         
         //TODO: 3- Creating a directory inside Documents
         let newDirectoryURL = docURL.appendingPathComponent("myFiles")
@@ -114,9 +114,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         //TODO: 10- Reading file's attributes
         let fileURL = docURL.appendingPathComponent("anotherFile.txt")
-        let filePath2 = fileURL.path
+        let filePath10 = fileURL.path
         do {
-            let attributes = try manager.attributesOfItem(atPath: filePath2)
+            let attributes = try manager.attributesOfItem(atPath: filePath10)
             let type = attributes[.type] as! FileAttributeType
             let size = attributes[.size] as! Int
             let date = attributes[.creationDate] as! Date
@@ -135,6 +135,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("-- Last checking --")
         listItems(directory: docURL)
         listItems(directory: customDirURL)
+
+        //TODO: 12- Bundle - Loading a project file
+        ///main: returns a reference to the app’s bundle
+        let bundle = Bundle.main
+        let filePath12 = bundle.path(forResource: "quote", ofType: "txt")
+        print("TODO: 12- filePath12: \(String(describing: filePath12))")
+        if let data = manager.contents(atPath: filePath12!) {
+            let message = String(data: data, encoding: .utf8)
+            print(message!)
+        }
+        
+        let allBundles = Bundle.allBundles
+        print(allBundles)
 
     }
 
