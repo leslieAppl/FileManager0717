@@ -147,8 +147,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         let allBundles = Bundle.allBundles
-        print(allBundles)
-
+        print(allBundles)        
     }
 
     //TODO: 4- Listing the content of a directory
