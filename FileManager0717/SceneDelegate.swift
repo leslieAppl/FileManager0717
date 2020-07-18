@@ -111,6 +111,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         print("-- Last checking --")
         listItems(directory: docURL)
         listItems(directory: customDirURL)
+        
+        //TODO: 10- Reading file's attributes
+        let fileURL = docURL.appendingPathComponent("anotherFile.txt")
+        let filePath2 = fileURL.path
+        do {
+            let attributes = try manager.attributesOfItem(atPath: filePath2)
+            let type = attributes[.type] as! FileAttributeType
+            let size = attributes[.size] as! Int
+            let date = attributes[.creationDate] as! Date
+            
+            if type != FileAttributeType.typeDirectory {
+                print("Name: \(fileURL.lastPathComponent)")
+                print("size: \(size)")
+                print("date: \(date)")
+            }
+            
+        } catch {
+            print("couldn't read file's attributes")
+        }
+        
+        ///Checking the content of a custom dir
+        print("-- Last checking --")
+        listItems(directory: docURL)
+        listItems(directory: customDirURL)
 
     }
 

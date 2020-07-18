@@ -14,6 +14,6 @@
 
 ## 7 Copying Files
 
-## 8 Removing Files and Directories
+## 8,9 Removing Files and Directories
 
-
+## 10 Reading file's attributes
