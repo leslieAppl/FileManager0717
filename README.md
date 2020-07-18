@@ -11,3 +11,9 @@
 ## 5 Creating files in a custom directory
 
 ## 6 Moving Files
+
+## 7 Copying Files
+
+## 8 Removing Files and Directories
+
+

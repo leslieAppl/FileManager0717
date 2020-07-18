@@ -68,6 +68,50 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         listItems(directory: docURL)
         listItems(directory: customDirURL)
 
+        //TODO: 7- Copying Files
+        let copyOriginURL = docURL.appendingPathComponent("myFiles/anotherFile.txt")
+        let copyDestinationURL = docURL.appendingPathComponent("anotherFile.txt")
+        let copyOriginPath = copyOriginURL.path
+        let copyDestinationPath = copyDestinationURL.path
+        do {
+            try manager.copyItem(atPath: copyOriginPath, toPath: copyDestinationPath)
+        } catch {
+            print("File was not copied")
+        }
+        
+        ///Checking the content of a custom dir
+        print("-- Last checking --")
+        listItems(directory: docURL)
+        listItems(directory: customDirURL)
+        
+        //TODO: 8- Removing Files
+        let removeFileURL = docURL.appendingPathComponent("myText.txt")
+        let removeFilePath = removeFileURL.path
+        do {
+            try manager.removeItem(atPath: removeFilePath)
+        } catch {
+            print("File was not removed")
+        }
+        
+        ///Checking the content of a custom dir
+        print("-- Last checking --")
+        listItems(directory: docURL)
+        listItems(directory: customDirURL)
+        
+        //TODO: 9- Removing Directory
+        let removeDirURL = docURL.appendingPathComponent("myFiles")
+        let removeDirPath = removeDirURL.path
+        do {
+            try manager.removeItem(atPath: removeDirPath)
+        } catch {
+            print("Directory was not removed")
+        }
+        
+        ///Checking the content of a custom dir
+        print("-- Last checking --")
+        listItems(directory: docURL)
+        listItems(directory: customDirURL)
+
     }
 
     //TODO: 4- Listing the content of a directory
