@@ -49,7 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         ///Preparing target dir URL for listing the content of a custom directory
-        let customDirURL = docURL.appendingPathComponent("myFiles/")
+        let customDirURL = docURL.appendingPathComponent("myFiles")
         listItems(directory: customDirURL)
     }
 
