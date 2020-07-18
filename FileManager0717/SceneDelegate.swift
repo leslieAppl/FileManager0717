@@ -41,7 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         listItems(directory: docURL)
         
         //TODO: 5- Creating files in a custom directory
-        let anotherFileURL = docURL.appendingPathComponent("myFiles/anotherfile.txt")
+        let anotherFileURL = docURL.appendingPathComponent("myFiles/anotherFile.txt")
         let anotherFilePath = anotherFileURL.path
         let isCreated = manager.createFile(atPath: anotherFilePath, contents: nil, attributes: nil)
         if !isCreated {
