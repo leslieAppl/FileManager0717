@@ -39,6 +39,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         listItems(directory: docURL)
+        
+        //TODO: 5- Creating files in a custom directory
+        let anotherFileURL = docURL.appendingPathComponent("myFiles/anotherfile.txt")
+        let anotherFilePath = anotherFileURL.path
+        let isCreated = manager.createFile(atPath: anotherFilePath, contents: nil, attributes: nil)
+        if !isCreated {
+            print("We couldn't create the file")
+        }
+        
+        ///Preparing target dir URL for listing the content of a custom directory
+        let customDirURL = docURL.appendingPathComponent("myFiles/")
+        listItems(directory: customDirURL)
     }
 
     //TODO: 4- Listing the content of a directory
@@ -55,6 +67,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
     }
+    
     
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
