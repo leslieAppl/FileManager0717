@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         let filePath = fileURL.path
         
         if manager.fileExists(atPath: filePath) {
+            ///Converting Data to String
             if let content = manager.contents(atPath: filePath) {
                 diaryTxt.text = String(data: content, encoding: .utf8)
             }
@@ -43,6 +44,7 @@ extension ViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         let text = diaryTxt.text
         do {
+            ///Converting String to Data
             try text?.write(to: fileURL, atomically: true, encoding: .utf8)
         } catch {
             print("Error")
