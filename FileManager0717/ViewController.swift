@@ -13,9 +13,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var diaryTxt: UITextView!
     
     var fileURL: URL!
+    var sceneDelegate: SceneDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sceneDelegate = SceneDelegate()
         
         diaryTxt.delegate = self
         
@@ -36,6 +39,27 @@ class ViewController: UIViewController {
         } else {
             manager.createFile(atPath: filePath, contents: nil, attributes: nil)
         }
+        
+        //TODO: 13- Encoding and decoding data
+        let fileURL13 = docURL.appendingPathComponent("quotes.dat")
+        let filePath13 = fileURL13.path
+        ///Decoding data
+        if manager.fileExists(atPath: filePath13) {
+            if let content = manager.contents(atPath: filePath13) {
+                if let result = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSString.self, from: content) as String? {
+                    let message = result
+                    print(message)
+                }
+            }
+        } else {
+            ///Endoding data
+            let quote = "Fiction is the truth inside the lie."
+            if let fileData = try? NSKeyedArchiver.archivedData(withRootObject: quote, requiringSecureCoding: false) {
+                manager.createFile(atPath: filePath13, contents: fileData, attributes: nil)
+            }
+        }
+        
+        sceneDelegate.listItems(directory: docURL)
     }
 }
 
