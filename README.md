@@ -22,8 +22,8 @@
 
 ## 12 Bundle - Loading a project file
 
-## 13 Archiving Custom Objects to Data
+## 13 Archiving Standard Objects to Data Structure
 
-## 14 Archiving Custom Objects to Property List
+## 14 Archiving Custom Objects -> Property List -> Data Structure
 
 

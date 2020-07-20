@@ -40,7 +40,7 @@ class ViewController: UIViewController {
             manager.createFile(atPath: filePath, contents: nil, attributes: nil)
         }
         
-        //TODO: 13- Archiving Custom Objects to Data
+        //TODO: 13- Archiving Standard Objects to Data
         ///Encoding and decoding data
         let fileURL13 = docURL.appendingPathComponent("quotes.dat")
         let filePath13 = fileURL13.path
