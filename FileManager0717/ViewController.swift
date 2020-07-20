@@ -40,12 +40,14 @@ class ViewController: UIViewController {
             manager.createFile(atPath: filePath, contents: nil, attributes: nil)
         }
         
-        //TODO: 13- Encoding and decoding data
+        //TODO: 13- Archiving Custom Objects to Data
+        ///Encoding and decoding data
         let fileURL13 = docURL.appendingPathComponent("quotes.dat")
         let filePath13 = fileURL13.path
         ///Decoding data
         if manager.fileExists(atPath: filePath13) {
             if let content = manager.contents(atPath: filePath13) {
+                ///‘self’ means here is not just a type, but the reference of the type.
                 if let result = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSString.self, from: content) as String? {
                     let message = result
                     print(message)
@@ -60,6 +62,45 @@ class ViewController: UIViewController {
         }
         
         sceneDelegate.listItems(directory: docURL)
+        
+        //TODO: - 14 Archiving Custom Objects to Property List
+        ///Encoding and decoding arrays of custom objects
+        let fileURL14 = docURL.appendingPathComponent("uerData.dat")
+        let filePath14 = fileURL14.path
+        if manager.fileExists(atPath: filePath14) {
+            ///get contents from file
+            if let content = manager.contents(atPath: filePath14) {
+                ///Unarchiving Custom Object from Data Structure
+                if let result = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSData.self, from: content) as Data? {
+                    let data = result
+                    ///Unarchiving Custom Object from Property List
+                    let decoder = PropertyListDecoder()
+                    if let books = try? decoder.decode([Book].self, from: data) {
+                        for book in books {
+                            print("\(book.title) - \(book.author) - \(book.edition)")
+                        }
+                    }
+                }
+            }
+        } else {
+            let book1 = Book(title: "IT", author: "Stephen King", edition: 2)
+            let book2 = Book(title: "Pet Sematary", author: "Stephen King", edition: 1)
+            let book3 = Book(title: "The Shining", author: "Stephen King", edition: 1)
+            let list = [book1, book2, book3]
+            
+            ///Archiving Custom Object to Property List
+            let encoder = PropertyListEncoder()
+            if let data = try? encoder.encode(list) {
+                ///Archiving Custom Object to Data Structure
+                if let fileData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false) {
+                    ///Create Archived Data Structure File
+                    manager.createFile(atPath: filePath14, contents: fileData, attributes: nil)
+                }
+            }
+        }
+        
+        sceneDelegate.listItems(directory: docURL)
+
     }
 }
 
