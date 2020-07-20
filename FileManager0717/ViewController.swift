@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         if manager.fileExists(atPath: filePath14) {
             ///get contents from file
             if let content = manager.contents(atPath: filePath14) {
-                ///Unarchiving Custom Object from Data Structure
+                ///Unarchiving Property List from Data Structure
                 if let result = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSData.self, from: content) as Data? {
                     let data = result
                     ///Unarchiving Custom Object from Property List
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
             ///Archiving Custom Object to Property List
             let encoder = PropertyListEncoder()
             if let data = try? encoder.encode(list) {
-                ///Archiving Custom Object to Data Structure
+                ///Archiving Property List to Data Structure
                 if let fileData = try? NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false) {
                     ///Create Archived Data Structure File
                     manager.createFile(atPath: filePath14, contents: fileData, attributes: nil)
