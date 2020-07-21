@@ -88,7 +88,7 @@ class ViewController: UIViewController {
             let book3 = Book(title: "The Shining", author: "Stephen King", edition: 1)
             let list = [book1, book2, book3]
             
-            ///Archiving Custom Object to Property List
+            ///encodes instances of data types to a property list.
             let encoder = PropertyListEncoder()
             if let data = try? encoder.encode(list) {
                 ///Archiving Property List to Data Structure
