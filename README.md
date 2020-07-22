@@ -26,4 +26,4 @@
 
 ## 14 Archiving Custom Objects -> Property List -> Data Structure
 
-
+## 15 Added CoreData Model

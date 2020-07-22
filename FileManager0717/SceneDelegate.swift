@@ -140,7 +140,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         ///main: returns a reference to the app’s bundle
         let bundle = Bundle.main
         let filePath12 = bundle.path(forResource: "quote", ofType: "txt")
-        print("TODO: 12- filePath12: \(String(describing: filePath12))")
+        
         if let data = manager.contents(atPath: filePath12!) {
             let message = String(data: data, encoding: .utf8)
             print(message!)
